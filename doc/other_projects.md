@@ -48,7 +48,7 @@ Other Keyboard Firmware Projects
 - <http://geekhack.org/index.php?topic=19458.0>
 
 ## kbdbabel.org[converter][vintage][protocol][8051]
-Great resource of vintage keyboard protocol information and code
+Great resourse of vintage keyboard protocol information and code
 
 - <http://www.kbdbabel.org/>
 

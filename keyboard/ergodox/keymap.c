@@ -42,7 +42,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     k40,k41,k42,k43,k44,                                        \
                             k55,k56,                            \
                                 k54,                            \
-                        k53,k52,k51,                            \
+                        k53,k52,k51,k50,                        \
                                                                 \
     /* right hand, spatial positions */                         \
         k07,k08,k09,k0A,k0B,k0C,k0D,                            \
@@ -56,7 +56,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                                                 \
    /* matrix positions */                                       \
    {                                                            \
-    { KC_##k00,KC_##k10,KC_##k20,KC_##k30,KC_##k40,KC_NO   },   \
+    { KC_##k00,KC_##k10,KC_##k20,KC_##k30,KC_##k40,KC_##k50},   \
     { KC_##k01,KC_##k11,KC_##k21,KC_##k31,KC_##k41,KC_##k51},   \
     { KC_##k02,KC_##k12,KC_##k22,KC_##k32,KC_##k42,KC_##k52},   \
     { KC_##k03,KC_##k13,KC_##k23,KC_##k33,KC_##k43,KC_##k53},   \
@@ -83,10 +83,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "keymap_micro.h"
 #elif defined(KEYMAP_CUB)
 #include "keymap_cub.h"
-#elif defined(KEYMAP_PLOVER)
-#include "keymap_plover.h"
 #elif defined(KEYMAP_SIMON)
 #include "keymap_simon.h"
+#elif defined(KEYMAP_TESTTHUMBS)
+#include "keymap_testthumbs.h"
+#elif defined(KEYMAP_CC123)
+#include "keymap_cc123.h"
 #else
 
 static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {

@@ -5,11 +5,9 @@
 #include "bootloader.h"
 #include "debug.h"
 #include "keymap.h"
-#include "host.h"
 #include "action_layer.h"
 #include "eeconfig.h"
 #include "bootmagic.h"
-
 
 void bootmagic(void)
 {
@@ -23,7 +21,7 @@ void bootmagic(void)
     uint8_t scan = 100;
     while (scan--) { matrix_scan(); _delay_ms(10); }
     print("done.\n");
-
+	
     /* bootmagic skip */
     if (bootmagic_scan_keycode(BOOTMAGIC_KEY_SKIP)) {
         return;
@@ -77,14 +75,7 @@ void bootmagic(void)
     if (bootmagic_scan_keycode(BOOTMAGIC_KEY_SWAP_BACKSLASH_BACKSPACE)) {
         keymap_config.swap_backslash_backspace = !keymap_config.swap_backslash_backspace;
     }
-    if (bootmagic_scan_keycode(BOOTMAGIC_HOST_NKRO)) {
-        keymap_config.nkro = !keymap_config.nkro;
-    }
     eeconfig_write_keymap(keymap_config.raw);
-
-#ifdef NKRO_ENABLE
-    keyboard_nkro = keymap_config.nkro;
-#endif
 
     /* default layer */
     uint8_t default_layer = 0;

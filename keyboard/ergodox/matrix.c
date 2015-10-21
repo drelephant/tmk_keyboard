@@ -176,13 +176,41 @@ uint8_t matrix_scan(void)
     }
 #endif
 
+#ifdef KEYMAP_CC123
+    uint8_t layer = biton32(layer_state);
+
+    ergodox_board_led_off();
+    switch (layer) {
+        case 0:
+// none
+            
+            break;
+        default:
+            ergodox_board_led_on();
+            break;
+    }
+#endif
+
+#ifdef KEYMAP_TESTTHUMBS
+    uint8_t layer = biton32(layer_state);
+
+    ergodox_board_led_off();
+    switch (layer) {
+		case 11:			// thumbs screwed
+		    ergodox_board_led_on();
+			break;
+        default:
+            break;
+    }
+#endif
+
     for (uint8_t i = 0; i < MATRIX_ROWS; i++) {
         select_row(i);
         matrix_row_t cols = read_cols(i);
         if (matrix_debouncing[i] != cols) {
             matrix_debouncing[i] = cols;
             if (debouncing) {
-                debug("bounce!: "); debug_hex(debouncing); debug("\n");
+                // debug("bounce!: "); debug_hex(debouncing); debug("\n"); // removed to help debugging
             }
             debouncing = DEBOUNCE;
         }

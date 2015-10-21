@@ -115,8 +115,11 @@ cub: all
 simon: OPT_DEFS += -DKEYMAP_SIMON
 simon: all
 
-plover: OPT_DEFS += -DKEYMAP_PLOVER
-plover: all
+testthumbs: OPT_DEFS += -DKEYMAP_TESTTHUMBS
+testthumbs: all
 
-.DEFAULT_GOAL := simon
+cc123: OPT_DEFS += -DKEYMAP_CC123
+cc123: all
+
+.DEFAULT_GOAL := cc123
 
