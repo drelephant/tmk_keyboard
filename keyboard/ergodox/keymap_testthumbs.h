@@ -4,52 +4,50 @@
 #define DEBUG_ACTION
 
 static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    /* Keymap 0: Default Layer
-     *
-     * ,--------------------------------------------------.           ,--------------------------------------------------.
-     * |   ~    |   1  |   2  |   3  |   4  |   5  |   \  |           |   '  |   6  |   7  |   8  |   9  |   0  |   =    |
-     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-     * | Tab    |   Q  |   W  |   E  |   R  |   T  | ~Fn1 |           | ~Fn3 |   Y  |   U  |   I  |   O  |   P  |   [    |
-     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-     * | LShift |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  | RShift |
-     * |--------+------+------+------+------+------|  Fn0 |           | ~Fn4 |------+------+------+------+------+--------|
-     * | LCtrl  |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | RCtrl  |
-     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-     *   | ~Fn1 | ~Fn2 | Caps | LAlt | LGui |                                       |  Lft |  Up  |  Dn  | Rght | ~Fn4 |
-     *   `----------------------------------'                                       `----------------------------------'
-     *                                        ,-------------.       ,-------------.
-     *                                        | +Fn2 | Home |       | PgUp | Del  |
-     *                                 ,------|------|------|       |------+------+------.
-     *                                 |      |      |  End |       | PgDn |      |      |
-     *                                 | BkSp |  ESC |------|       |------| Enter| Space|
-     *                                 |      |      |  Spc |       | Ins  |      |      |
-     *                                 `--------------------'       `--------------------'
-     */
 
-    // BASE LAYERS
-
-    KEYMAP(  // layout: layer 0: customized dvorak with symbol row switched
+     KEYMAP(  // layer 0: normal cc123 layout
         // left hand
-        ESC, FN12,FN12,FN12,FN12,FN12,BSLS,
-        TAB, QUOT,COMM,DOT, P,   Y,   FN2,
-        LSFT,A,   O,   E,   U,   I,
-        LCTL,SCLN,Q,   J,   K,   X,   DEL,
-        FN3, FN1, LCTL,LALT,LGUI,
-                                      FN5, HOME,
-                                           END,
-                                 BSPC,LSFT,LGUI,
+        ESC ,   1,   2,   3,   4,   5,   LBRC,
+        TAB ,QUOT,COMM, DOT,   P,   Y,   BSLS,    
+        BSLS,   A,   O,   E,   U,   I,
+        LSFT,SCLN,   Q,   J,   K,   X,   EQL,
+        LCTL, GRV, BSLS,LALT,FN3,				// FN3 Mouse Layer
+                                      LGUI,MPRV,
+                                           MNXT,
+                                 BSPC,DEL ,MPLY,FN16,// FN16 invisikey
         // right hand
-             MINS,FN12,FN12,FN12,FN12,FN12,MPLY,
-             FN3, F,   G,   C,   R,   L,   MNXT,
-                  D,   H,   T,   N,   S,   RSFT,
-             DEL, B,   M,   W,   V,   Z,   RCTL,
-                       MPRV,MNXT,APP, FN8,FN2,
-        PGUP,MPLY,
+             FN17,6,   7,   8,   9,   0,   RBRC,// FN17=Left Led on - FN4=Teensy
+             GRV ,F,   G,   C,   R,   L,   SLSH,
+                  D,   H,   T,   N,   S,   MINS,
+             BSLS,B,   M,   W,   V,   Z,   RSFT,
+                       LEFT,RGHT,UP  ,DOWN,RCTL,
+        PGUP,FN5,								// FN14 Toggle Left Hand Off
         PGDN,
-        ENT, FN1, SPC
+        FN2,ENT,SPC								// FN2 Movement Layer
     ),
-
-    KEYMAP(  // layout: layer 1: customized dvorak
+	
+    KEYMAP(  // layer 1 : debugging, no left hand - rearranged to access magic functions
+        // left hand
+        NO  ,   NO,  NO,  NO,  NO,  NO,  NO,
+        NO  ,   NO,  NO,  NO,  NO,  NO,  NO,    // FN4 Teensy
+        NO  ,   NO,  NO,  NO,  NO,  NO,
+        NO  ,   NO,  NO,  NO,  NO,  NO,  NO,
+        NO  ,   NO,  NO,  NO,  NO,				// FN2 Movement Layer
+                                      NO , NO,
+                                          NO,
+								  NO,  NO , FN15,FN16, // FN0 Turn Left Hand Off
+        // right hand
+             ESC, 6,   7,   8,   9,   0,   PAUS,
+             RBRC,Y,   U,   I,   O,   P,   LBRC,
+                  H,   N,   K,   L,   SCLN,LSFT,
+             TRNS,X,   M,   COMM,DOT, SLSH,RSFT,
+                       LEFT,RGHT,UP  ,DOWN,RCTL,
+        FN14,FN5,
+        PGUP,
+        FN2 ,ENT ,SPC
+    ),
+ 
+    KEYMAP(  // layer 2: customized dvorak
         // left hand
         ESC, 1,   2,   3,   4,   5,   BSLS,
         TAB, QUOT,COMM,DOT, P,   Y,   FN2,
@@ -58,7 +56,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         FN3, FN1, LCTL,LALT,LGUI,
                                       FN5, HOME,
                                            END,
-                                 BSPC,LSFT,LGUI,
+                                 BSPC,LSFT,LGUI,TRNS,
         // right hand
              MINS,6,   7,   8,   9,   0,   EQL,
              FN3, F,   G,   C,   R,   L,   SLSH,
@@ -70,72 +68,30 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ENT, FN1, SPC
     ),
 
-    KEYMAP(  // layer 2 : qwerty
-        // left hand
-        TRNS,1,   2,   3,   4,   5,   TRNS,
-        TRNS,Q,   W,   E,   R,   T,   TRNS,
-        TRNS,A,   S,   D,   F,   G,
-        TRNS,Z,   X,   C,   V,   B,   TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,
-                                      TRNS,TRNS,
-                                           TRNS,
-                                 TRNS,TRNS,TRNS,
-        // right hand
-             TRNS,6,   7,   8,   9,   0,   MINS,
-             TRNS,Y,   U,   I,   O,   P,   RBRC,
-                  H,   J,   K,   L,   SCLN,RSFT,
-             TRNS,N,   M,   COMM,DOT, SLSH,RSFT,
-                       TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,
-        TRNS,
-        TRNS,TRNS,TRNS
-    ),
-
-    KEYMAP(  // layer 3 : reserved
-        // left hand
-        TRNS,1,   2,   3,   4,   5,   TRNS,
-        TRNS,Q,   W,   E,   R,   T,   TRNS,
-        TRNS,A,   S,   D,   F,   G,
-        TRNS,Z,   X,   C,   V,   B,   TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,
-                                      TRNS,TRNS,
-                                           TRNS,
-                                 TRNS,TRNS,TRNS,
-        // right hand
-             TRNS,6,   7,   8,   9,   0,   MINS,
-             TRNS,Y,   U,   I,   O,   P,   RBRC,
-                  H,   J,   K,   L,   SCLN,QUOT,
-             TRNS,N,   M,   COMM,DOT, SLSH,RSFT,
-                       TRNS,TRNS,TRNS,TRNS,TRNS,
-        RALT,RCTL,
-        PGUP,
-        PGDN,ENT, SPC
-    ),
-
     // PLOVER (SPECIAL CASE)
 
-    KEYMAP(  // layout: layer 4: Steno for Plover
+    KEYMAP(  // layout: layer 3: Steno for Plover
         // left hand
-        FN5, NO,  NO,  NO,  NO,  NO,  NO,  
+        TRNS,NO,  NO,  NO,  NO,  NO,  NO,  
         NO,  1,   2,   3,   4,   5,   NO,  
         NO,  Q,   W,   E,   R,   T,  
         NO,  A,   S,   D,   F,   G,   NO,
         NO,  NO,  NO,  NO,  NO,  
-                                      FN5, NO,  
+                                      NO,  NO,  
                                            NO,  
-                                 C,   V,   NO,  
+                                 C,   V,   FN15,FN16,// FN15 Turn Left Thumbs Off (Momentarily)
         // right hand
              NO,  NO,  NO,  NO,  NO,  NO,  TRNS,
              NO,  6,   7,   8,   9,   0,   TRNS,
                   Y,   U,   I,   O,   P,   LBRC,
              NO,  H,   J,   K,   L,   SCLN,QUOT,
                        TRNS,TRNS,NO,  NO,  NO,  
-        TRNS,TRNS,  
+        TRNS,FN5,  
         TRNS,  
         NO,  N,   M   
     ),
 
-    KEYMAP(  // layout: layer 5: reserved
+    KEYMAP(  // layer 4: reserved
         // left hand
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
@@ -144,7 +100,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,TRNS,TRNS,TRNS,TRNS,
                                       TRNS,TRNS,
                                            TRNS,
-                                 TRNS,TRNS,TRNS,
+                                 TRNS,TRNS,TRNS,TRNS,
         // right hand
              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
@@ -158,7 +114,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // MODIFIERS THAT MIGHT BE STICKY
 
-    KEYMAP(  // layout: layer 6: mouse + numpad
+    KEYMAP(  // layout: layer 5: mouse + numpad
         // left hand
         FN0, NO,  NO,  NO,  NO,  PAUS,PSCR,
         TRNS,NO,  WH_U,MS_U,WH_D,BTN2,TRNS,
@@ -167,7 +123,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,FN13,TRNS,TRNS,TRNS,
                                       TRNS,TRNS,
                                            TRNS,
-                                 TRNS,TRNS,TRNS,
+                                 TRNS,TRNS,TRNS,TRNS,
         // right hand
              SLCK,NLCK,EQL, PSLS,PAST,PMNS,TRNS,
              TRNS,NO,  P7,  P8,  P9,  PMNS,BSPC,
@@ -179,27 +135,27 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ENT, TRNS,BSPC
     ),
 
-    KEYMAP(  // layout: layer 7: F-keys + cursor
+    KEYMAP(  // layout: layer 6: F-keys + cursor
         // left hand
         FN0, F1,  F2,  F3,  F4,  F5,  F6,
-        FN4, NO,  PGUP,UP,  PGDN,NO,  TRNS,
+        TRNS,NO,  PGUP,UP,  PGDN,NO,  TRNS,
         TRNS,HOME,LEFT,DOWN,RGHT,END, 
         TRNS,NO,  NO,  END, HOME,NO,  TRNS,
-        TRNS,TRNS,TRNS,FN10,FN11,
+        TRNS ,TRNS,TRNS,FN10,FN2,
                                       TRNS,TRNS,
                                            TRNS,
-                                 LCTL,LSFT,TRNS,
+                                 LCTL,LSFT,TRNS,TRNS,
         // right hand
              F7,  F8,  F9,  F10, F11, F12, MINS,
-             TRNS,NO,  PGUP,UP,  PGDN, NO,  FN4,
+             TRNS,ESC, PGUP,UP,  PGDN, NO,  FN4,
                   HOME,LEFT,DOWN,RGHT,END, TRNS,
-             TRNS,NO,  NO,  NO,  NO,  NO,  TRNS,
+             TRNS,NO,  ENT, NO,  NO,  NO,  TRNS,
                        RGUI,RALT,TRNS,TRNS,TRNS,
         TRNS,TRNS,
-        TRNS, TRNS,RSFT,RCTL
+        TRNS,TRNS,RSFT,RCTL
     ),
 
-    KEYMAP(  // layout: layer 8: "BlueShift"
+    KEYMAP(  // layer 7: "BlueShift"
         // left hand
         FN0, F1,  F2,  F3,  F4,  F5,  F6,
         TRNS,GRV, FN12,FN12,PSCR,BSLS,TRNS,  // the FN12 entries are for inverted brace/bracket keys
@@ -208,7 +164,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         FN13,TRNS,TRNS,TRNS,TRNS,
                                       TRNS,TRNS,
                                            TRNS,
-                                 ESC, TRNS,TRNS,
+                                 ESC, TRNS,TRNS,TRNS,
         // right hand
              F7,  F8,  F9,  F10, F11, F12, MINS,
              TRNS,PGUP,HOME,UP,  END, SLSH,RBRC,
@@ -220,51 +176,9 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,TRNS,TRNS
     ),
 
-    KEYMAP(  // layout: layer 9: reserved
-        // left hand
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,
-                                      TRNS,TRNS,
-                                           TRNS,
-                                 TRNS,TRNS,TRNS,
-        // right hand
-             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-                  TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-                       TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,
-        TRNS,
-        TRNS,TRNS,TRNS
-    ),
-
-    KEYMAP(  // layout: layer 10: reserved
-        // left hand
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,
-                                      TRNS,TRNS,
-                                           TRNS,
-                                 TRNS,TRNS,TRNS,
-        // right hand
-             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-                  TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-                       TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,
-        TRNS,
-        TRNS,TRNS,TRNS
-    ),
-
     // MODIFIERS THAT WON'T BE STICKY
 
-    KEYMAP(  // layout: layer 11: Special function-driven commands (any-key)
+    KEYMAP(  // layer 8: Special function-driven commands (any-key)
         // left hand
         FN8, FN8, FN8, FN8, FN8, FN8, FN8, 
         FN8, FN8, FN8, FN8, FN8, FN8, FN8, 
@@ -273,7 +187,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         FN8, FN8, FN8, FN8, FN8, 
                                       FN8, FN8, 
                                            FN8, 
-                                 FN8, FN10,FN8, 
+                                 FN8, FN10,FN8,TRNS,
         // right hand
              FN8, FN8, FN8, FN8, FN8, FN8, FN8, 
              FN8, FN8, FN8, FN8, FN8, FN8, FN8, 
@@ -285,7 +199,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         FN8, FN8, FN8
     ),
 
-    KEYMAP(  // layout: layer 12: F-keys only
+    KEYMAP(  // layout: layer 9: F-keys only
         // left hand
         FN0, NO,  NO,  NO,  NO,  NO,  NO,  
         TRNS,F13, F14, F15, F16, NO,  TRNS,
@@ -294,7 +208,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         FN13,FN13,TRNS,LALT,LGUI,
                                       TRNS,TRNS,
                                            TRNS,
-                                 LCTL,LSFT,TRNS,
+                                 LCTL,LSFT,TRNS,TRNS,
         // right hand
              NO,  NO,  F10, F11, F12, NO,  TRNS,
              TRNS,NO,  F7,  F8,  F9,  NO,  TRNS,
@@ -306,7 +220,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,RSFT,RCTL
     ),
 
-    KEYMAP(  // layout: layer 13: reserved
+    KEYMAP(  // layout: layer 10: reserved
         // left hand
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
@@ -315,7 +229,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,TRNS,TRNS,TRNS,TRNS,
                                       TRNS,TRNS,
                                            TRNS,
-                                 TRNS,TRNS,TRNS,
+                                 TRNS,TRNS,TRNS,TRNS,
         // right hand
              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
@@ -327,23 +241,24 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,TRNS,TRNS
     ),
 
-    KEYMAP(  // layout: layer 14: reserved
+    KEYMAP(  // layout: layer 11: disabled left thumb
         // left hand
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,
-                                      TRNS,TRNS,
-                                           TRNS,
-                                 TRNS,TRNS,TRNS,
+									NO,NO,
+										NO,
+									NO,NO,FN15,FN16,
+
         // right hand
              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
                   TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
                        TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,
+         TRNS,TRNS,
         TRNS,
         TRNS,TRNS,TRNS
     ),
@@ -402,6 +317,10 @@ enum function_id {
     PLOVER_SWITCH,
     SHIFT_SWITCH,
     FKEY_SWITCH,
+	DUMBTHUMBS,
+	DUMBTHUMBSMOMENTARY,
+	INVISIKEY,
+	LEFTLED,
 };
 
 enum macro_id {
@@ -415,19 +334,24 @@ enum macro_id {
  */
 static const uint16_t PROGMEM fn_actions[] = {
     ACTION_LAYER_SET(0, ON_PRESS),                  // FN0 - set layer0 only
-    ACTION_LAYER_TAP_TOGGLE(8),                     // FN1 - switch to BlueShift
-    ACTION_LAYER_TAP_TOGGLE(7),                     // FN2 - movement tap/toggle
-    ACTION_LAYER_TAP_TOGGLE(6),                     // FN3 - numpad
+    ACTION_LAYER_TAP_TOGGLE(7),                     // FN1 - switch to BlueShift
+    ACTION_LAYER_TAP_TOGGLE(6),                     // FN2 - Fkeys & Cursor tap/toggle
+    ACTION_LAYER_TAP_TOGGLE(5),                     // FN3 - mouse + numpad
     ACTION_FUNCTION(TEENSY_KEY),                    // FN4 - Teensy key
     ACTION_FUNCTION(PLOVER_SWITCH),                 // FN5 - enable Plover
     ACTION_FUNCTION(PLOVER_SWITCH),                 // ** FN6 - suspend Plover (OUT OF USE)
-    ACTION_LAYER_MOMENTARY(11),                     // FN7 - Trigger the AnyKey layer
+    ACTION_LAYER_MOMENTARY(8),                      // FN7 - Trigger the AnyKey layer
     ACTION_FUNCTION(ANY_KEY),                       // FN8 - AnyKey functional layer
     ACTION_MODS_TAP_TOGGLE(MOD_LSFT),               // ** FN9 - tap toggle shift (OUT OF USE)
     ACTION_MACRO(MACRO_PASSWORD1),                  // FN10 - password1
     ACTION_MACRO(MACRO_PASSWORD2),                  // FN11 - password2
     ACTION_FUNCTION(SHIFT_SWITCH),                  // FN12 - symbolized number row
     ACTION_FUNCTION(FKEY_SWITCH),                   // FN13 - trigger Fkey layer and get rid of it appropriately
+	ACTION_FUNCTION(DUMBTHUMBS),					// FN14 - activate/disable left hand for testing
+//	ACTION_LAYER_MOMENTARY(11),						// FN15 - disable left thumbs
+	ACTION_FUNCTION(DUMBTHUMBSMOMENTARY),			// FN15 - disable left thumbs
+	ACTION_FUNCTION(INVISIKEY),						// FN16 - invisikey
+	ACTION_FUNCTION(LEFTLED),						// FN17 - turn left-led on
 };
 
 void simon_hotkey(keyrecord_t *record, action_t action)
@@ -476,16 +400,68 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
         bootloader_jump(); // should not return
         print("not supported.\n");
     }
+    else if (id == DUMBTHUMBS) {
+        if (event.pressed) {
+            if (layer_state & 1<<11) { // layer 11 is already on
+                print("enabling left thumbs...\n");
+                layer_off(11);
+            } else {
+                print("disabling left thumbs...\n");
+                layer_on(11);
+            }
+        }		
+    }
+    else if (id == DUMBTHUMBSMOMENTARY) {
+        if (event.pressed) {
+            /* if (layer_state & 1<<11) */ { // layer 11 is already on
+                print("DUMBTHUMBSMOMENTARY disabling left thumbs momentarily... and top left led ON\n");
+                layer_on(11);
+				ergodox_left_led_1_on();
+            }
+        } else {
+                print("enabling left thumbs momentarily... and top left led off\n");
+                layer_off(11);
+				ergodox_left_led_1_off();
+		}
+    }
+    else if (id == INVISIKEY) {
+        if (event.pressed) {
+			{
+                print("INVISIKEY pressed, disabling left thumbs momentarily... and top left led ON\n");
+				ergodox_left_led_1_on();
+                layer_on(11);
+				ergodox_left_leds_update();
+			}
+        } else {
+                print("INVISIKEY released, enabling left thumbs momentarily... and top left led off\n");
+				ergodox_left_led_1_off();
+				layer_off(11);
+				ergodox_left_leds_update();
+		}
+    }
+    else if (id == LEFTLED) {
+        if (event.pressed) {
+			{
+                print("LEFTLED pressed, turning top left led ON\n");
+				ergodox_left_led_1_on();
+				ergodox_left_leds_update();
+			}
+        } else {
+                print("LEFTLED released, turning top left led off\n");
+				ergodox_left_led_1_off();
+				ergodox_left_leds_update();
+		}
+    }
     else if (id == PLOVER_SWITCH) {
         if (event.pressed) {
-            if (layer_state & 1<<4) { // plover is already on
+            if (layer_state & 1<<3) { // plover is already on
                 print("switching off plover layout...\n");
                 action_macro_play(MACRO( D(A), D(W), D(P), D(F), D(SCLN), D(LBRC), D(QUOT), D(D), D(A), D(L), U(W), U(P), U(F), U(SCLN), U(LBRC), U(QUOT), U(D), U(L), END));
-                layer_off(4);
+                layer_off(3);
             } else {
                 print("switching on plover layout...\n");
                 action_macro_play(MACRO(D(LANG5), U(LANG5), D(W), D(P), D(F), D(SCLN), D(LBRC), D(QUOT), D(D), D(A), U(W), U(P), U(F), U(SCLN), U(LBRC), U(QUOT), U(D), END));
-                layer_on(4);
+                layer_on(3);
             }
         }
     }

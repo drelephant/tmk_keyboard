@@ -28,7 +28,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // BASE LAYERS
 
-    KEYMAP(  // layout: layer 0: customized dvorak with symbol row switched
+/*     KEYMAP(  // layout: layer 0: customized dvorak with symbol row switched
         // left hand
         ESC, FN12,FN12,FN12,FN12,FN12,BSLS,
         TAB, QUOT,COMM,DOT, P,   Y,   FN2,
@@ -48,7 +48,29 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         PGDN,
         ENT, FN1, SPC
     ),
-
+ */
+ 
+    KEYMAP(  // layer 0 : qwerty
+        // left hand
+        ESC ,   1,   2,   3,   4,   5,   EQL,
+        TAB ,   Q,   W,   E,   R,   T,   NO,    
+        BSLS,   A,   S,   D,   F,   G,
+        LSFT,   Z,   X,   C,   V,   B,   NO,
+        LCTL,   GRV, BSLS,NO,  FN2,				// FN2 Movement Layer
+                                      FN5 ,LALT,
+                                           HOME,
+                                 BSPC,DEL ,END ,
+        // right hand
+             FN4 ,6,   7,   8,   9,   0,   MINS,// FN4=Teensy
+             RBRC,Y,   U,   I,   O,   P,   LBRC,
+                  H,   J,   K,   L,   SCLN,QUOT,
+             TRNS,N,   M,   COMM,DOT, SLSH,RSFT,
+                       LEFT,RGHT,UP  ,DOWN,RCTL,
+        RALT,RGUI,
+        PGUP,
+        PGDN,ENT ,SPC
+    ),
+ 
     KEYMAP(  // layout: layer 1: customized dvorak
         // left hand
         ESC, 1,   2,   3,   4,   5,   BSLS,
@@ -182,10 +204,10 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // layout: layer 7: F-keys + cursor
         // left hand
         FN0, F1,  F2,  F3,  F4,  F5,  F6,
-        FN4, NO,  PGUP,UP,  PGDN,NO,  TRNS,
+        TRNS,NO,  PGUP,UP,  PGDN,NO,  TRNS,
         TRNS,HOME,LEFT,DOWN,RGHT,END, 
         TRNS,NO,  NO,  END, HOME,NO,  TRNS,
-        TRNS,TRNS,TRNS,FN10,FN11,
+        FN4 ,TRNS,TRNS,FN10,FN11,
                                       TRNS,TRNS,
                                            TRNS,
                                  LCTL,LSFT,TRNS,
@@ -416,7 +438,7 @@ enum macro_id {
 static const uint16_t PROGMEM fn_actions[] = {
     ACTION_LAYER_SET(0, ON_PRESS),                  // FN0 - set layer0 only
     ACTION_LAYER_TAP_TOGGLE(8),                     // FN1 - switch to BlueShift
-    ACTION_LAYER_TAP_TOGGLE(7),                     // FN2 - movement tap/toggle
+    ACTION_LAYER_MOMENTARY(7),                      // FN2 - movement tap/toggle
     ACTION_LAYER_TAP_TOGGLE(6),                     // FN3 - numpad
     ACTION_FUNCTION(TEENSY_KEY),                    // FN4 - Teensy key
     ACTION_FUNCTION(PLOVER_SWITCH),                 // FN5 - enable Plover
@@ -480,11 +502,11 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
         if (event.pressed) {
             if (layer_state & 1<<4) { // plover is already on
                 print("switching off plover layout...\n");
-                action_macro_play(MACRO( D(A), D(W), D(P), D(F), D(SCLN), D(LBRC), D(QUOT), D(D), D(A), D(L), U(W), U(P), U(F), U(SCLN), U(LBRC), U(QUOT), U(D), U(L), END));
+//                action_macro_play(MACRO( D(A), D(W), D(P), D(F), D(SCLN), D(LBRC), D(QUOT), D(D), D(A), D(L), U(W), U(P), U(F), U(SCLN), U(LBRC), U(QUOT), U(D), U(L), END));
                 layer_off(4);
             } else {
                 print("switching on plover layout...\n");
-                action_macro_play(MACRO(D(LANG5), U(LANG5), D(W), D(P), D(F), D(SCLN), D(LBRC), D(QUOT), D(D), D(A), U(W), U(P), U(F), U(SCLN), U(LBRC), U(QUOT), U(D), END));
+//                action_macro_play(MACRO(D(LANG5), U(LANG5), D(W), D(P), D(F), D(SCLN), D(LBRC), D(QUOT), D(D), D(A), U(W), U(P), U(F), U(SCLN), U(LBRC), U(QUOT), U(D), END));
                 layer_on(4);
             }
         }

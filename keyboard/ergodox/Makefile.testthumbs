@@ -39,7 +39,7 @@
 #----------------------------------------------------------------------------
 
 # Target file name (without extension).
-TARGET = ergodox_pjrc
+TARGET = ergodox_pjrc_testthumbs
 
 # Directory common source filess exist
 TOP_DIR = ../..
@@ -118,8 +118,5 @@ simon: all
 testthumbs: OPT_DEFS += -DKEYMAP_TESTTHUMBS
 testthumbs: all
 
-cc123: OPT_DEFS += -DKEYMAP_CC123
-cc123: all
-
-.DEFAULT_GOAL := cc123
+.DEFAULT_GOAL := testthumbs
 
