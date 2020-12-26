@@ -335,7 +335,8 @@ enum macro_id {
 static const uint16_t PROGMEM fn_actions[] = {
     ACTION_LAYER_SET(0, ON_PRESS),                  // FN0 - set layer0 only
     ACTION_LAYER_TAP_TOGGLE(7),                     // FN1 - switch to BlueShift
-    ACTION_LAYER_TAP_TOGGLE(6),                     // FN2 - Fkeys & Cursor tap/toggle
+//  ACTION_LAYER_TAP_TOGGLE(6),                     // FN2 - Fkeys & Cursor tap/toggle
+    ACTION_LAYER_MOMENTARY(6),                      // FN2 - Fkeys & Cursor tap/toggle
     ACTION_LAYER_TAP_TOGGLE(5),                     // FN3 - mouse + numpad
     ACTION_FUNCTION(TEENSY_KEY),                    // FN4 - Teensy key
     ACTION_FUNCTION(PLOVER_SWITCH),                 // FN5 - enable Plover
