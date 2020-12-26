@@ -11,7 +11,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TAB ,QUOT,COMM, DOT,   P,   Y,   BSLS,    
         BSLS,   A,   O,   E,   U,   I,
         LSFT,SCLN,   Q,   J,   K,   X,   EQL,
-        LCTL, GRV, BSLS,LALT,FN3,				// FN3 Mouse Layer
+        LCTL, GRV, BSLS,FN3,LALT,				// FN3 Mouse Layer
                                       LGUI,MPRV,
                                            MNXT,
                                  BSPC,DEL ,MPLY,FN16,// FN16 invisikey
