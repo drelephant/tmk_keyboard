@@ -196,10 +196,11 @@ uint8_t matrix_scan(void)
 
     ergodox_board_led_off();
     switch (layer) {
-		case 11:			// thumbs screwed
-		    ergodox_board_led_on();
+		case 0:
+		    
 			break;
-        default:
+        default:  // led on if any other layers are active
+		    ergodox_board_led_on();
             break;
     }
 #endif
