@@ -141,7 +141,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,NO,  PGUP,UP,  PGDN,NO,  TRNS,
         TRNS,HOME,LEFT,DOWN,RGHT,END, 
         TRNS,NO,  NO,  END, HOME,NO,  TRNS,
-        TRNS ,TRNS,TRNS,FN10,FN2,
+        TRNS,TRNS,TRNS,FN3 ,LALT,
                                       TRNS,TRNS,
                                            TRNS,
                                  LCTL,LSFT,TRNS,TRNS,
@@ -152,7 +152,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              TRNS,NO,  ENT, NO,  NO,  NO,  TRNS,
                        RGUI,RALT,TRNS,TRNS,TRNS,
         TRNS,TRNS,
-        TRNS,TRNS,RSFT,RCTL
+        FN2 ,TRNS,RSFT,RCTL
     ),
 
     KEYMAP(  // layer 7: "BlueShift"
