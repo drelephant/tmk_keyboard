@@ -53,13 +53,13 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TAB, QUOT,COMM,DOT, P,   Y,   FN2,
         LSFT,A,   O,   E,   U,   I,
         LCTL,SCLN,Q,   J,   K,   X,   DEL,
-        FN3, FN1, LCTL,LALT,LGUI,
+        FN3, FN1, LCTL,LALT,LGUI,                    // FN3 Mouse Layer
                                       FN5, HOME,
                                            END,
                                  BSPC,LSFT,LGUI,TRNS,
         // right hand
              MINS,6,   7,   8,   9,   0,   EQL,
-             FN3, F,   G,   C,   R,   L,   SLSH,
+             FN3, F,   G,   C,   R,   L,   SLSH,     // FN3 Mouse Layer
                   D,   H,   T,   N,   S,   RSFT,
              DEL, B,   M,   W,   V,   Z,   RCTL,
                        LEFT,DOWN,UP,  RGHT,FN2,
@@ -141,7 +141,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,NO,  PGUP,UP,  PGDN,NO,  TRNS,
         TRNS,HOME,LEFT,DOWN,RGHT,END, 
         TRNS,NO,  NO,  END, HOME,NO,  TRNS,
-        TRNS,TRNS,TRNS,FN3 ,LALT,
+        TRNS,TRNS,TRNS,FN3 ,LALT,                    // FN3 Mouse Layer
                                       TRNS,TRNS,
                                            TRNS,
                                  LCTL,LSFT,TRNS,TRNS,
