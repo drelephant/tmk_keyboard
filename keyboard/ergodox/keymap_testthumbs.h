@@ -16,7 +16,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                            MNXT,
                                  BSPC,DEL ,MPLY,FN16,// FN16 invisikey
         // right hand
-             FN17,6,   7,   8,   9,   0,   RBRC,// FN17=Left Led on - FN4=Teensy
+             INS ,6,   7,   8,   9,   0,   RBRC,
              GRV ,F,   G,   C,   R,   L,   SLSH,
                   D,   H,   T,   N,   S,   MINS,
              BSLS,B,   M,   W,   V,   Z,   RSFT,
@@ -29,10 +29,10 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // layer 1 : debugging, no left hand - rearranged to access magic functions
         // left hand
         NO  ,   NO,  NO,  NO,  NO,  NO,  NO,
-        NO  ,   NO,  NO,  NO,  NO,  NO,  NO,    // FN4 Teensy
+        NO  ,   NO,  NO,  NO,  NO,  NO,  NO,
         NO  ,   NO,  NO,  NO,  NO,  NO,
         NO  ,   NO,  NO,  NO,  NO,  NO,  NO,
-        NO  ,   NO,  NO,  NO,  NO,				// FN2 Movement Layer
+        NO  ,   NO,  NO,  NO,  NO,
                                       NO , NO,
                                           NO,
 								  NO,  NO , FN15,FN16, // FN0 Turn Left Hand Off
@@ -146,11 +146,11 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                            TRNS,
                                  LCTL,LSFT,TRNS,TRNS,
         // right hand
-             F7,  F8,  F9,  F10, F11, F12, MINS,
-             TRNS,ESC, PGUP,UP,  PGDN, NO,  FN4,
+             TRNS, F6,  F7,  F8,  F9,  F10, F11,
+             TRNS,ESC, PGUP,UP,  PGDN, NO,  F12,
                   HOME,LEFT,DOWN,RGHT,END, TRNS,
              TRNS,NO,  ENT, NO,  NO,  NO,  TRNS,
-                       RGUI,RALT,TRNS,TRNS,TRNS,
+                       RGUI,RALT,TRNS,TRNS, FN4,     // FN4 Teensy Key
         TRNS,TRNS,
         FN2 ,TRNS,RSFT,RCTL
     ),
