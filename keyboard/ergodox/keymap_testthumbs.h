@@ -150,9 +150,10 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              TRNS,ESC, PGUP,UP,  PGDN, NO,  F12,
                   HOME,LEFT,DOWN,RGHT,END, TRNS,
              TRNS,NO,  ENT, NO,  NO,  NO,  TRNS,
-                       RGUI,RALT,TRNS,TRNS, FN4,     // FN4 Teensy Key
+                       FN18,FN19,PGUP,PGDN, FN4,     // FN4 Teensy Key FN18/19 Alt-Left/Right
         TRNS,TRNS,
-        FN2 ,TRNS,RSFT,RCTL
+        TRNS,
+		TRNS,NO,NO
     ),
 
     KEYMAP(  // layer 7: "BlueShift"
@@ -353,6 +354,8 @@ static const uint16_t PROGMEM fn_actions[] = {
 	ACTION_FUNCTION(DUMBTHUMBSMOMENTARY),			// FN15 - disable left thumbs
 	ACTION_FUNCTION(INVISIKEY),						// FN16 - invisikey
 	ACTION_FUNCTION(LEFTLED),						// FN17 - turn left-led on
+	ACTION_MODS_KEY(MOD_LALT, KC_LEFT),				// FN18 - Alt-LEFT
+	ACTION_MODS_KEY(MOD_LALT, KC_RGHT),				// FN19 - Alt-RIGHT
 };
 
 void simon_hotkey(keyrecord_t *record, action_t action)
