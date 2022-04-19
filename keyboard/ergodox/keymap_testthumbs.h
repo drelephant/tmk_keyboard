@@ -21,7 +21,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                   D,   H,   T,   N,   S,   MINS,
              BSLS,B,   M,   W,   V,   Z,   RSFT,
                        LEFT,RGHT,UP  ,DOWN,RCTL,
-        PGUP,FN5,								// FN14 Toggle Left Hand Off
+        PGUP,FN5,								// FN5 Activate Plover
         PGDN,
         FN2,ENT,SPC								// FN2 Movement Layer
     ),
