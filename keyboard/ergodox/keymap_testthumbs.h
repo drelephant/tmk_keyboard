@@ -3,6 +3,8 @@
 #define KC_SW0 KC_FN0
 #define DEBUG_ACTION
 
+bool is_alt_tab_active = false;
+
 static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
      KEYMAP(  // layer 0: normal cc123 layout
@@ -23,7 +25,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        LEFT,RGHT,UP  ,DOWN,RCTL,
         PGUP,FN5,								// FN5 Activate Plover
         PGDN,
-        FN2,ENT,SPC								// FN2 Movement Layer
+        FN20,ENT,SPC								// FN20 Nav Layer with Alt-Tab
     ),
 	
     KEYMAP(  // layer 1 : debugging, no left hand - rearranged to access magic functions
@@ -149,7 +151,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              TRNS, F6,  F7,  F8,  F9,  F10, F11,
              TRNS,ESC, PGUP,UP,  PGDN, NO,  F12,
                   HOME,LEFT,DOWN,RGHT,END, TRNS,
-             TRNS,NO,  ENT, NO,  NO,  NO,  TRNS,
+             TRNS,NO,  ENT, FN21,FN22,  NO,  TRNS,		// FN21 Alt-Tab FN-22 Sf-Alt-Tab
                        FN18,FN19,PGUP,PGDN, FN4,     // FN4 Teensy Key FN18/19 Alt-Left/Right
         TRNS,TRNS,
         TRNS,
@@ -322,6 +324,9 @@ enum function_id {
 	DUMBTHUMBSMOMENTARY,
 	INVISIKEY,
 	LEFTLED,
+	NAVLAYER_WITH_ALTTAB,
+	ALTTAB,
+	SFALTB,
 };
 
 enum macro_id {
@@ -356,6 +361,9 @@ static const uint16_t PROGMEM fn_actions[] = {
 	ACTION_FUNCTION(LEFTLED),						// FN17 - turn left-led on
 	ACTION_MODS_KEY(MOD_LALT, KC_LEFT),				// FN18 - Alt-LEFT
 	ACTION_MODS_KEY(MOD_LALT, KC_RGHT),				// FN19 - Alt-RIGHT
+	ACTION_FUNCTION(NAVLAYER_WITH_ALTTAB),			// FN20 - Switch to Nav Layer and support Alt-Tab
+	ACTION_FUNCTION(ALTTAB),						// FN21 - Alt-Tab
+	ACTION_FUNCTION(SFALTB),						// FN22 - Shift Alt-Tab
 };
 
 void simon_hotkey(keyrecord_t *record, action_t action)
@@ -403,6 +411,47 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
         _delay_ms(250);
         bootloader_jump(); // should not return
         print("not supported.\n");
+    }
+    else if (id == NAVLAYER_WITH_ALTTAB) {
+        if (event.pressed) {
+        // turn on the NAV layer
+        layer_on(6);
+      } else if (is_alt_tab_active) {
+        // turn off the NAV layer
+        layer_off(6);
+        // deactivate alt-tab
+        is_alt_tab_active = false;
+        unregister_code(KC_LALT);
+      } else {
+        // turn off the NAV layer
+        layer_off(6);
+      }
+    }
+    else if (id == ALTTAB) {
+        if (event.pressed) {
+			if (!is_alt_tab_active) {
+				is_alt_tab_active = true;
+				register_code(KC_LALT);
+			}
+			//ACTION_KEY(KC_TAB); // didn't compile
+			register_code(KC_TAB);
+			unregister_code(KC_TAB);
+			print("Pressing Alt-TAB.\n");
+        }
+    }
+    else if (id == SFALTB) {
+        if (event.pressed) {
+			if (!is_alt_tab_active) {
+				is_alt_tab_active = true;
+				register_code(KC_LALT);
+			}
+			register_code(KC_LSFT);
+			//ACTION_KEY(KC_TAB); // didn't compile
+			register_code(KC_TAB);
+			unregister_code(KC_TAB);
+			unregister_code(KC_LSFT);
+			print("Pressing Shift-Alt-TAB.\n");
+        }
     }
     else if (id == DUMBTHUMBS) {
         if (event.pressed) {
