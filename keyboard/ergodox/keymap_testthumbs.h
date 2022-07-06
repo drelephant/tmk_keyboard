@@ -149,12 +149,12 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  LCTL,LSFT,TRNS,TRNS,
         // right hand
              TRNS, F6,  F7,  F8,  F9,  F10, F11,
-             TRNS,ESC, PGUP,UP,  PGDN, NO,  F12,
-                  HOME,LEFT,DOWN,RGHT,END, TRNS,
-             TRNS,NO,  ENT, FN21,FN22,  NO,  TRNS,		// FN21 Alt-Tab FN-22 Sf-Alt-Tab
-                       FN18,FN19,PGUP,PGDN, FN4,     // FN4 Teensy Key FN18/19 Alt-Left/Right
-        TRNS,TRNS,
-        TRNS,
+             TRNS,ESC, PGUP,UP,  PGDN,  NO, F12,
+                  HOME,LEFT,DOWN,RGHT, END,TRNS,
+             TRNS,NO,  ENT, FN21,FN22,  NO,TRNS,	// FN21 Alt-Tab FN-22 Sf-Alt-Tab
+                       FN18,FN19,PGUP,PGDN, FN4,    // FN4 Teensy Key FN18/19 Alt-Left/Right
+        FN23,TRNS,									// FN23 Alt-PgUp
+        FN24,										// FN24 Alt-PgDn
 		TRNS,NO,NO
     ),
 
@@ -364,6 +364,8 @@ static const uint16_t PROGMEM fn_actions[] = {
 	ACTION_FUNCTION(NAVLAYER_WITH_ALTTAB),			// FN20 - Switch to Nav Layer and support Alt-Tab
 	ACTION_FUNCTION(ALTTAB),						// FN21 - Alt-Tab
 	ACTION_FUNCTION(SFALTB),						// FN22 - Shift Alt-Tab
+	ACTION_MODS_KEY(MOD_LALT, KC_PGUP),				// FN23 - Alt-PgUp
+	ACTION_MODS_KEY(MOD_LALT, KC_PGDOWN),			// FN24 - Alt-PgDn
 };
 
 void simon_hotkey(keyrecord_t *record, action_t action)
