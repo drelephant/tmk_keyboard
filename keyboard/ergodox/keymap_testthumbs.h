@@ -25,7 +25,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        LEFT,RGHT,UP  ,DOWN,RCTL,
         PGUP,FN5,								// FN5 Activate Plover
         PGDN,
-        FN20,ENT,SPC								// FN20 Nav Layer with Alt-Tab
+        FN20,ENT,SPC								// FN20 Nav Layer 6 with Alt-Tab
     ),
 	
     KEYMAP(  // layer 1 : debugging, no left hand - rearranged to access magic functions
@@ -143,7 +143,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,NO,  PGUP,UP,  PGDN,NO,  TRNS,
         TRNS,HOME,LEFT,DOWN,RGHT,END, 
         TRNS,NO,  NO,  END, HOME,NO,  TRNS,
-        TRNS,TRNS,TRNS,FN3 ,LALT,                    // FN3 Mouse Layer
+        FN25,TRNS,TRNS,FN3 ,LALT,                    // FN25 Qwerty Layer, FN3 Mouse Layer
                                       TRNS,TRNS,
                                            TRNS,
                                  LCTL,LSFT,TRNS,TRNS,
@@ -223,21 +223,21 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,RSFT,RCTL
     ),
 
-    KEYMAP(  // layout: layer 10: reserved
+    KEYMAP(  // layer 10 : qwerty for games
         // left hand
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,1,   2,   3,   4,   5,   TRNS,
+        TRNS,Q,   W,   E,   R,   T,   TRNS,
+        TRNS,A,   S,   D,   F,   G,
+        TRNS,Z,   X,   C,   V,   B,   TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,
                                       TRNS,TRNS,
                                            TRNS,
                                  TRNS,TRNS,TRNS,TRNS,
         // right hand
-             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-                  TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+             TRNS,6,   7,   8,   9,   0,   MINS,
+             TRNS,Y,   U,   I,   O,   P,   RBRC,
+                  H,   J,   K,   L,   SCLN,RSFT,
+             TRNS,N,   M,   COMM,DOT, SLSH,RSFT,
                        TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,
         TRNS,
@@ -327,6 +327,7 @@ enum function_id {
 	NAVLAYER_WITH_ALTTAB,
 	ALTTAB,
 	SFALTB,
+	QWERTYLAYER,
 };
 
 enum macro_id {
@@ -366,6 +367,7 @@ static const uint16_t PROGMEM fn_actions[] = {
 	ACTION_FUNCTION(SFALTB),						// FN22 - Shift Alt-Tab
 	ACTION_MODS_KEY(MOD_LALT, KC_PGUP),				// FN23 - Alt-PgUp
 	ACTION_MODS_KEY(MOD_LALT, KC_PGDOWN),			// FN24 - Alt-PgDn
+	ACTION_FUNCTION(QWERTYLAYER),					// FN25 - Switch to Qwerty layer for games
 };
 
 void simon_hotkey(keyrecord_t *record, action_t action)
@@ -616,6 +618,17 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
             }
         }
     }
+    else if (id == QWERTYLAYER) {
+		if (event.pressed) {
+            if (layer_state & 1<<10) { // layer 10 is on
+                print("Disabling QWERTYLAYER for games\n");
+                layer_off(10);
+            } else {
+                print("Switching to QWERTYLAYER for games\n");
+                layer_on(10);
+            }
+        }	
+    }	
     else if (id == FKEY_SWITCH) {
         uint8_t row = event.key.row;
         if (event.pressed) {
