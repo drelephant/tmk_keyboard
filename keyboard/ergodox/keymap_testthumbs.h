@@ -139,11 +139,11 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     KEYMAP(  // layout: layer 6: F-keys + cursor
         // left hand
-        FN0, F1,  F2,  F3,  F4,  F5,  F6,
-        TRNS,NO,  PGUP,UP,  PGDN,NO,  TRNS,
+        FN0, F1,  F2,  F3,  F4,  F5,  F6,			// FN0 Set Layer 0 only
+        FN25,NO,  PGUP,UP,  PGDN,NO,  TRNS,			// FN25 Qwerty Layer
         TRNS,HOME,LEFT,DOWN,RGHT,END, 
         TRNS,NO,  NO,  END, HOME,NO,  TRNS,
-        FN25,TRNS,TRNS,FN3 ,LALT,                    // FN25 Qwerty Layer, FN3 Mouse Layer
+        TRNS,TRNS,TRNS,FN3 ,LALT,                   // FN3 Mouse Layer
                                       TRNS,TRNS,
                                            TRNS,
                                  LCTL,LSFT,TRNS,TRNS,
@@ -241,7 +241,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,
         TRNS,
-        TRNS,TRNS,TRNS
+        FN20,TRNS,TRNS
     ),
 
     KEYMAP(  // layout: layer 11: disabled left thumb
@@ -328,6 +328,7 @@ enum function_id {
 	ALTTAB,
 	SFALTB,
 	QWERTYLAYER,
+	LAYERZERO,
 };
 
 enum macro_id {
@@ -340,7 +341,8 @@ enum macro_id {
  * Fn action definition
  */
 static const uint16_t PROGMEM fn_actions[] = {
-    ACTION_LAYER_SET(0, ON_PRESS),                  // FN0 - set layer0 only
+//    ACTION_LAYER_SET(0, ON_PRESS),                  // FN0 - set layer0 only
+	ACTION_FUNCTION(LAYERZERO),						// FN0 - Switch to layer0 only
     ACTION_LAYER_TAP_TOGGLE(7),                     // FN1 - switch to BlueShift
 //  ACTION_LAYER_TAP_TOGGLE(6),                     // FN2 - Fkeys & Cursor tap/toggle
     ACTION_LAYER_MOMENTARY(6),                      // FN2 - Fkeys & Cursor tap/toggle
@@ -416,6 +418,13 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
         bootloader_jump(); // should not return
         print("not supported.\n");
     }
+	else if (id == LAYERZERO) {
+        if (event.pressed) {
+                print("Setting only Layer Zero (dvorak)\n");
+				layer_clear();
+				//layer_off(10);
+        }
+	}
     else if (id == NAVLAYER_WITH_ALTTAB) {
         if (event.pressed) {
         // turn on the NAV layer
