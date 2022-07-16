@@ -93,25 +93,25 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         NO,  N,   M   
     ),
 
-    KEYMAP(  // layer 4: reserved
+    KEYMAP(  // layer 4 : qwerty for games
         // left hand
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,1,   2,   3,   4,   5,   TRNS,
+        TRNS,Q,   W,   E,   R,   T,   TRNS,
+        TRNS,A,   S,   D,   F,   G,
+        TRNS,Z,   X,   C,   V,   B,   TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,
                                       TRNS,TRNS,
                                            TRNS,
                                  TRNS,TRNS,TRNS,TRNS,
         // right hand
-             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-                  TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+             TRNS,6,   7,   8,   9,   0,   MINS,
+             TRNS,Y,   U,   I,   O,   P,   RBRC,
+                  H,   J,   K,   L,   SCLN,RSFT,
+             TRNS,N,   M,   COMM,DOT, SLSH,RSFT,
                        TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,
         TRNS,
-        TRNS,TRNS,TRNS
+        FN20,TRNS,TRNS
     ),
 
     // MODIFIERS THAT MIGHT BE STICKY
@@ -629,12 +629,12 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
     }
     else if (id == QWERTYLAYER) {
 		if (event.pressed) {
-            if (layer_state & 1<<10) { // layer 10 is on
+            if (layer_state & 1<<4) { // layer 4 is on
                 print("Disabling QWERTYLAYER for games\n");
-                layer_off(10);
+                layer_off(4);
             } else {
                 print("Switching to QWERTYLAYER for games\n");
-                layer_on(10);
+                layer_on(4);
             }
         }	
     }	
