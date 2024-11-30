@@ -148,10 +148,10 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                            TRNS,
                                  LCTL,LSFT,TRNS,TRNS,
         // right hand
-             TRNS, F6,  F7,  F8,  F9,  F10, F11,
-             TRNS,ESC, PGUP,UP,  PGDN,  NO, F12,
-                  HOME,LEFT,DOWN,RGHT, END,TRNS,
-             TRNS,NO,  ENT, FN21,FN22,  NO,TRNS,	// FN21 Alt-Tab FN-22 Sf-Alt-Tab
+             TRNS, F6 ,F7  ,F8  ,F9  ,F10 , F11,
+             TRNS,ESC ,PGUP,UP  ,PGDN,NO  , F12,
+                  HOME,LEFT,DOWN,RGHT,END ,TRNS,
+             TRNS,CALC,ENT ,FN21,FN22,NO  ,TRNS,	// FN21 Alt-Tab FN-22 Sf-Alt-Tab
                        FN18,FN19,PGUP,PGDN, FN4,    // FN4 Teensy Key FN18/19 Alt-Left/Right
         FN23,TRNS,									// FN23 Alt-PgUp
         FN24,										// FN24 Alt-PgDn
